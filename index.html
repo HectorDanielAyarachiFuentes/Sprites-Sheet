@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animaciones de Perrito | Salto Realista (Corregido)</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    
+</head>
+<body>
+    <header>
+        <h1><i class="fas fa-paw"></i> Animaciones de Perrito</h1>
+        <p class="subtitle">Demostración de un salto realista combinando técnicas de CSS y Sprites Sheet</p>
+    </header>
+
+    <div class="contenedor-animaciones">
+        <!-- Tarjeta 1: Subida del salto -->
+        <div class="animacion-individual subiendo" data-anim-container="subiendo">
+            <h2><i class="fas fa-arrow-up"></i> Saltando (Subida)</h2>
+            <div class="perrito-contenedor">
+                <div class="perrito-anim subiendo"></div>
+            </div>
+            <p class="descripcion">El perrito se impulsa con fuerza. Esta es la primera fase del salto.</p>
+            <div class="controls">
+                <button class="btn" data-action="play" data-target="subiendo"><i class="fas fa-play"></i> Reproducir</button>
+                <button class="btn" data-action="pause" data-target="subiendo"><i class="fas fa-pause"></i> Pausar</button>
+            </div>
+        </div>
+        
+        <!-- Tarjeta 2: Bajada del salto -->
+        <div class="animacion-individual bajando" data-anim-container="bajando">
+            <h2><i class="fas fa-arrow-down"></i> Aterrizando (Bajada)</h2>
+            <div class="perrito-contenedor">
+                <div class="perrito-anim bajando"></div>
+            </div>
+            <p class="descripcion">El perrito desciende y se prepara para el aterrizaje. La segunda fase del salto.</p>
+            <div class="controls">
+                <button class="btn" data-action="play" data-target="bajando"><i class="fas fa-play"></i> Reproducir</button>
+                <button class="btn" data-action="pause" data-target="bajando"><i class="fas fa-pause"></i> Pausar</button>
+            </div>
+        </div>
+
+        <!-- Tarjeta 3: Salto completo y realista -->
+        <div class="animacion-individual completo" data-anim-container="completo">
+            <h2><i class="fas fa-rocket"></i> Salto Completo y Fluido</h2>
+            <div class="perrito-contenedor">
+                <div class="perrito-anim completo"></div>
+            </div>
+            <p class="descripcion">¡Ahora sí! Combinamos los sprites con movimiento vertical para un salto que se siente real.</p>
+            <div class="controls">
+                <button class="btn" data-action="play" data-target="completo"><i class="fas fa-play"></i> Reproducir</button>
+                <button class="btn" data-action="pause" data-target="completo"><i class="fas fa-pause"></i> Pausar</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="info-box">
+        <h3><i class="fas fa-lightbulb"></i> La Técnica del Salto Realista</h3>
+        <div class="info-content">
+            <div class="info-detail">
+                <h4>Animación de Sprites (Definitiva)</h4>
+                <ul>
+                    <li><strong>Propiedad:</strong> <span>background-position</span></li>
+                    <li><strong>Técnica:</strong> <span>Keyframes por porcentajes</span></li>
+                    <li><strong>Resultado: </strong>Control total sobre cada fotograma, eliminando cualquier distorsión.</li>
+                </ul>
+            </div>
+            <div class="info-detail">
+                <h4>Animación de Movimiento</h4>
+                <ul>
+                    <li><strong>Propiedad:</strong> <span>transform: translateY()</span></li>
+                    <li><strong>Función:</strong> <span>ease-in-out</span></li>
+                    <li><strong>Resultado:</strong> Mueve al perrito arriba y abajo de forma suave, simulando la gravedad.</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>© 2025 Animaciones de Perrito - Demostración avanzada de animación CSS y Sprites Sheet.</p>
+    </footer>
+
+    
+    <script type="module" src="js.js"></script>
+</body>
+</html>

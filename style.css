@@ -1,0 +1,126 @@
+        :root {
+            --primary-color: #6a5acd;
+            --secondary-color: #ff7e5f;
+            --accent-color: #00c9ff;
+            --complete-color: #48bb78;
+            --bg-gradient-start: #6e8efb;
+            --bg-gradient-end: #a777e3;
+            --text-light: #ffffff;
+            --text-dark: #333;
+            --card-bg: #ffffff;
+            --shadow-color: rgba(0, 0, 0, 0.1);
+            --border-radius: 20px;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--bg-gradient-start), var(--bg-gradient-end));
+            background-attachment: fixed;
+            color: var(--text-dark);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 2rem;
+        }
+        
+        header { text-align: center; margin-bottom: 3rem; }
+        
+        h1 { font-size: 3rem; color: var(--text-light); text-shadow: 2px 2px 5px var(--shadow-color); margin-bottom: 0.5rem; }
+        
+        .subtitle { color: rgba(255, 255, 255, 0.9); font-size: 1.25rem; }
+        
+        .contenedor-animaciones { display: flex; flex-wrap: wrap; justify-content: center; gap: 40px; max-width: 1300px; }
+        
+        .animacion-individual {
+            background: var(--card-bg);
+            border-radius: var(--border-radius);
+            padding: 30px;
+            box-shadow: 0 10px 25px var(--shadow-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            width: 350px; text-align: center; position: relative; overflow: hidden; border-top: 5px solid;
+        }
+
+        .animacion-individual.subiendo { border-top-color: var(--secondary-color); }
+        .animacion-individual.bajando { border-top-color: var(--accent-color); }
+        .animacion-individual.completo { border-top-color: var(--complete-color); }
+        
+        .animacion-individual:hover { transform: translateY(-12px) scale(1.02); box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15); }
+        
+        h2 { color: var(--primary-color); margin-bottom: 20px; font-size: 1.8rem; display: flex; align-items: center; justify-content: center; gap: 10px; }
+        
+        .perrito-contenedor { height: 250px; display: flex; align-items: center; justify-content: center; margin-bottom: 25px; background: #f8f9fa; border-radius: 15px; border: 1px solid #e9ecef; }
+        
+        .perrito-anim {
+            width: 150px; 
+            height: 200px;
+            background-image: url('perrito_sprites.png');
+            background-repeat: no-repeat;
+            image-rendering: pixelated;
+        }
+        
+        .perrito-anim.subiendo,
+        .perrito-anim.bajando,
+        .perrito-anim.completo { /* AHORA TODOS USAN EL MISMO background-size CORRECTO */
+             background-size: 600px 400px;
+        }
+
+        .perrito-anim.subiendo { animation: anim-subir 0.8s steps(4) infinite; }
+        .perrito-anim.bajando { animation: anim-bajar 0.8s steps(4) infinite; }
+        
+        /* --- ANIMACIÓN COMPLETA Y REALISTA (VERSIÓN CORREGIDA FINAL) --- */
+        .perrito-anim.completo {
+            animation: 
+                anim-sprite-completo 1.5s steps(1, end) infinite, /* Usamos steps(1) porque los pasos ya están en los keyframes */
+                movimiento-salto-completo 1.5s ease-in-out infinite;
+        }
+        
+        @keyframes anim-subir {
+            to { background-position: -600px 0; }
+        }
+        
+        @keyframes anim-bajar {
+            from { background-position: 0 -200px; }
+            to { background-position: -600px -200px; }
+        }
+
+        /* Keyframes para la secuencia de SPRITES COMPLETA (VERSIÓN CORREGIDA FINAL) */
+        /* Definimos la posición exacta para cada uno de los 8 fotogramas. */
+        @keyframes anim-sprite-completo {
+            0%      { background-position: 0px 0; }       /* Frame 1 */
+            12.5%   { background-position: -150px 0; }     /* Frame 2 */
+            25%     { background-position: -300px 0; }     /* Frame 3 */
+            37.5%   { background-position: -450px 0; }     /* Frame 4 */
+            50%     { background-position: 0px -200px; }    /* Frame 5 (salto a la 2ª fila) */
+            62.5%   { background-position: -150px -200px; }  /* Frame 6 */
+            75%     { background-position: -300px -200px; }  /* Frame 7 */
+            87.5%   { background-position: -450px -200px; }  /* Frame 8 */
+            100%    { background-position: -450px -200px; }
+        }
+
+        /* Keyframes para el MOVIMIENTO FÍSICO del salto (se mantiene igual) */
+        @keyframes movimiento-salto-completo {
+            0%, 100% { transform: translateY(0); animation-timing-function: ease-out; }
+            50%      { transform: translateY(-70px); animation-timing-function: ease-in; }
+        }
+        
+        .descripcion { color: #555; font-size: 1rem; line-height: 1.6; }
+        .controls { display: flex; justify-content: center; gap: 15px; margin-top: 25px; }
+        .btn { padding: 10px 20px; border: none; border-radius: 50px; background: var(--primary-color); color: var(--text-light); cursor: pointer; transition: all 0.3s ease; font-weight: 600; font-size: 0.9rem; display: flex; align-items: center; gap: 8px; }
+        .btn i { transition: transform 0.3s ease; }
+        .btn:hover { background: #4a3f9a; transform: translateY(-2px); box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); }
+        .btn:hover i { transform: scale(1.1); }
+        .btn:disabled { background-color: #ccc; cursor: not-allowed; transform: none; box-shadow: none; }
+        .info-box { background: var(--card-bg); border-radius: var(--border-radius); padding: 30px; margin-top: 40px; max-width: 900px; width: 100%; box-shadow: 0 10px 25px var(--shadow-color); }
+        .info-box h3 { color: var(--primary-color); margin-bottom: 20px; font-size: 1.6rem; display: flex; align-items: center; gap: 10px; border-bottom: 2px solid #eee; padding-bottom: 10px; }
+        .info-content { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .info-detail { background: #f8f9fa; padding: 20px; border-radius: 10px; }
+        .info-detail h4 { color: var(--primary-color); margin-bottom: 15px; }
+        .info-detail ul { list-style-type: none; }
+        .info-detail li { margin-bottom: 10px; display: flex; justify-content: space-between; font-size: 0.95rem; }
+        .info-detail li strong { color: #444; }
+        footer { margin-top: 50px; color: rgba(255, 255, 255, 0.8); text-align: center; font-size: 0.9rem; }
+        
+        @media (max-width: 1200px) { .contenedor-animaciones { flex-direction: column; align-items: center; } }
